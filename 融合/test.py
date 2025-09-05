@@ -1,11 +1,9 @@
 
+from tensorflow.keras.layers import Input
 
-
-from nets.deeplab import Deeplabv3
+from nets.yolo4 import yolo_body
 
 if __name__ == "__main__":
-    model = Deeplabv3(21, [512,512,3], backbone='mobilenet')
+    inputs = Input([416,416,3])
+    model = yolo_body(inputs,3,80)
 
-
-    for i,layer in enumerate(model.layers):
-        print(i,layer.name)
